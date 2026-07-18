@@ -1,13 +1,12 @@
 class Book:
-    def __init__(self, book_id, title, author, isbn, year):
+    def __init__(self, book_id, title, author, year):
         self.book_id = book_id
         self.title = title
         self.author = author
-        self.isbn = isbn
         self.year = year
     
     def __str__(self):
-        return f"ID: {self.book_id} | Title: {self.title} | Author: {self.author} | ISBN: {self.isbn} | Year: {self.year}"
+        return f"ID: {self.book_id} | Title: {self.title} | Author: {self.author} | Year: {self.year}"
     
     def __repr__(self):
         return self.__str__()
@@ -19,8 +18,8 @@ class LibraryManagementSystem:
         self.books = []
         self.next_id = 1
     
-    def add_book(self, title, author, isbn, year):
-        book = Book(self.next_id, title, author, isbn, year)
+    def add_book(self, title, author, year):
+        book = Book(self.next_id, title, author, year)
         self.books.append(book)
         self.next_id += 1
         print(f"✓ Book '{title}' added successfully! (ID: {book.book_id})")
@@ -91,11 +90,11 @@ def main():
     library = LibraryManagementSystem()
     
     print("Loading sample books...\n")
-    library.add_book("To Kill a Mockingbird", "Harper Lee", "978-0-06-112008-4", 1960)
-    library.add_book("1984", "George Orwell", "978-0-452-26234-2", 1949)
-    library.add_book("The Great Gatsby", "F. Scott Fitzgerald", "978-0-7432-7356-5", 1925)
-    library.add_book("Pride and Prejudice", "Jane Austen", "978-0-14-143951-8", 1813)
-    library.add_book("The Catcher in the Rye", "J.D. Salinger", "978-0-316-76948-0", 1951)
+    library.add_book("To Kill a Mockingbird", "Harper Lee", 1960)
+    library.add_book("1984", "George Orwell", 1949)
+    library.add_book("The Great Gatsby", "F. Scott Fitzgerald", 1925)
+    library.add_book("Pride and Prejudice", "Jane Austen", 1813)
+    library.add_book("The Catcher in the Rye", "J.D. Salinger", 1951)
     
     while True:
         display_menu()
@@ -105,10 +104,9 @@ def main():
             print("\n--- Add New Book ---")
             title = input("Enter book title: ").strip()
             author = input("Enter author name: ").strip()
-            isbn = input("Enter ISBN: ").strip()
             try:
                 year = int(input("Enter publication year: ").strip())
-                library.add_book(title, author, isbn, year)
+                library.add_book(title, author, year)
             except ValueError:
                 print("✗ Invalid year. Please enter a valid number.")
         
